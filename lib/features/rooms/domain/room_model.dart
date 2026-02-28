@@ -9,13 +9,18 @@ class Room {
     this.capacity = 2,
     required this.pricePerNightSingle,
     required this.pricePerNightDouble,
+    double? weekendPricePerNightSingle,
+    double? weekendPricePerNightDouble,
     this.amenities = const [],
     this.imageUrl,
     this.isActive = true,
     required this.propertyId,
     required this.createdAt,
     required this.updatedAt,
-  });
+  })  : weekendPricePerNightSingle =
+            weekendPricePerNightSingle ?? (pricePerNightSingle * 1.2),
+        weekendPricePerNightDouble =
+            weekendPricePerNightDouble ?? (pricePerNightDouble * 1.2);
 
   final String id;
   final String name;
@@ -23,6 +28,8 @@ class Room {
   final int capacity;
   final double pricePerNightSingle;
   final double pricePerNightDouble;
+  final double weekendPricePerNightSingle;
+  final double weekendPricePerNightDouble;
   final List<String> amenities;
   final String? imageUrl;
   final bool isActive;
@@ -33,13 +40,19 @@ class Room {
   /// Create Room from Firestore document.
   factory Room.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
+    final single = (data['pricePerNightSingle'] ?? 0).toDouble();
+    final double_ = (data['pricePerNightDouble'] ?? 0).toDouble();
     return Room(
       id: doc.id,
       name: data['name'] ?? '',
       description: data['description'] ?? '',
       capacity: data['capacity'] ?? 2,
-      pricePerNightSingle: (data['pricePerNightSingle'] ?? 0).toDouble(),
-      pricePerNightDouble: (data['pricePerNightDouble'] ?? 0).toDouble(),
+      pricePerNightSingle: single,
+      pricePerNightDouble: double_,
+      weekendPricePerNightSingle:
+          (data['weekendPricePerNightSingle'] as num?)?.toDouble(),
+      weekendPricePerNightDouble:
+          (data['weekendPricePerNightDouble'] as num?)?.toDouble(),
       amenities: List<String>.from(data['amenities'] ?? []),
       imageUrl: data['imageUrl'],
       isActive: data['isActive'] ?? true,
@@ -57,6 +70,8 @@ class Room {
       'capacity': capacity,
       'pricePerNightSingle': pricePerNightSingle,
       'pricePerNightDouble': pricePerNightDouble,
+      'weekendPricePerNightSingle': weekendPricePerNightSingle,
+      'weekendPricePerNightDouble': weekendPricePerNightDouble,
       'amenities': amenities,
       'imageUrl': imageUrl,
       'isActive': isActive,
@@ -73,6 +88,8 @@ class Room {
     int? capacity,
     double? pricePerNightSingle,
     double? pricePerNightDouble,
+    double? weekendPricePerNightSingle,
+    double? weekendPricePerNightDouble,
     List<String>? amenities,
     String? imageUrl,
     bool? isActive,
@@ -85,6 +102,10 @@ class Room {
       capacity: capacity ?? this.capacity,
       pricePerNightSingle: pricePerNightSingle ?? this.pricePerNightSingle,
       pricePerNightDouble: pricePerNightDouble ?? this.pricePerNightDouble,
+      weekendPricePerNightSingle:
+          weekendPricePerNightSingle ?? this.weekendPricePerNightSingle,
+      weekendPricePerNightDouble:
+          weekendPricePerNightDouble ?? this.weekendPricePerNightDouble,
       amenities: amenities ?? this.amenities,
       imageUrl: imageUrl ?? this.imageUrl,
       isActive: isActive ?? this.isActive,

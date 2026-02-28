@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:homestay_booking/core/utils/date_utils.dart';
 import 'package:homestay_booking/features/bookings/domain/booking_model.dart';
 import 'package:homestay_booking/features/rooms/domain/room_model.dart';
@@ -22,7 +23,7 @@ class RoomListScreen extends ConsumerWidget {
       ),
       body: roomsAsync.when(
         data: (rooms) => bookingsAsync.when(
-          data: (bookings) => _buildRoomList(rooms, bookings, theme, colorScheme),
+          data: (bookings) => _buildRoomList(context, rooms, bookings, theme, colorScheme),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (e, _) => Center(child: Text('Error: $e')),
         ),
@@ -32,7 +33,7 @@ class RoomListScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildRoomList(List<Room> rooms, List<Booking> bookings,
+  Widget _buildRoomList(BuildContext context, List<Room> rooms, List<Booking> bookings,
       ThemeData theme, ColorScheme colorScheme) {
     if (rooms.isEmpty) {
       return Center(
@@ -51,11 +52,11 @@ class RoomListScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(12),
       itemCount: rooms.length,
       itemBuilder: (context, index) =>
-          _buildRoomCard(rooms[index], bookings, theme, colorScheme),
+          _buildRoomCard(context, rooms[index], bookings, theme, colorScheme),
     );
   }
 
-  Widget _buildRoomCard(Room room, List<Booking> bookings,
+  Widget _buildRoomCard(BuildContext context, Room room, List<Booking> bookings,
       ThemeData theme, ColorScheme colorScheme) {
     final today = AppDateUtils.today();
     final activeBookings = bookings.where((b) => b.isActive).toList();
@@ -140,6 +141,13 @@ class RoomListScreen extends ConsumerWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  icon: Icon(Icons.edit_outlined, color: colorScheme.primary, size: 20),
+                  onPressed: () => context.push('/rooms/${room.id}/edit'),
+                  tooltip: 'Edit Room',
+                  visualDensity: VisualDensity.compact,
                 ),
               ],
             ),

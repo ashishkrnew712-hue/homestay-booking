@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homestay_booking/core/constants/app_constants.dart';
 import 'package:homestay_booking/core/utils/date_utils.dart';
+import 'package:homestay_booking/core/utils/pricing_utils.dart';
 import 'package:homestay_booking/features/bookings/domain/booking_model.dart';
 import 'package:homestay_booking/features/rooms/domain/room_model.dart';
 import 'package:homestay_booking/shared/providers/auth_provider.dart';
@@ -56,12 +57,9 @@ class _CreateBookingScreenState extends ConsumerState<CreateBookingScreen> {
     if (_selectedRoom == null || _checkInDate == null || _checkOutDate == null) {
       return 0;
     }
-    final nights = AppDateUtils.calculateNights(_checkInDate!, _checkOutDate!);
-    if (nights <= 0) return 0;
-    final ratePerNight = _numberOfGuests == 1
-        ? _selectedRoom!.pricePerNightSingle
-        : _selectedRoom!.pricePerNightDouble;
-    return ratePerNight * nights;
+    return PricingUtils.calculateBookingPrice(
+      _selectedRoom!, _checkInDate!, _checkOutDate!, _numberOfGuests,
+    );
   }
 
   Future<void> _selectDate({required bool isCheckIn}) async {
@@ -527,11 +525,10 @@ class _CreateBookingScreenState extends ConsumerState<CreateBookingScreen> {
   }
 
   Widget _buildPriceSummary(ThemeData theme, ColorScheme colorScheme) {
-    final nights = AppDateUtils.calculateNights(_checkInDate!, _checkOutDate!);
-    final ratePerNight = _numberOfGuests == 1
-        ? _selectedRoom!.pricePerNightSingle
-        : _selectedRoom!.pricePerNightDouble;
+    final nightTypes = PricingUtils.countNightTypes(_checkInDate!, _checkOutDate!);
     final total = _calculateTotalPrice();
+    final weekdayRate = PricingUtils.getPerNightRate(_selectedRoom!, _numberOfGuests, DateTime(2025, 1, 6)); // Monday
+    final weekendRate = PricingUtils.getPerNightRate(_selectedRoom!, _numberOfGuests, DateTime(2025, 1, 10)); // Friday
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -552,11 +549,17 @@ class _CreateBookingScreenState extends ConsumerState<CreateBookingScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          _priceRow('${_selectedRoom!.name} × $nights night(s)', ''),
-          _priceRow(
-            '₹${ratePerNight.toInt()} × $nights',
-            '₹${total.toInt()}',
-          ),
+          _priceRow(_selectedRoom!.name, ''),
+          if (nightTypes.weekday > 0)
+            _priceRow(
+              '₹${weekdayRate.toInt()} × ${nightTypes.weekday} weekday night(s)',
+              '₹${(weekdayRate * nightTypes.weekday).toInt()}',
+            ),
+          if (nightTypes.weekend > 0)
+            _priceRow(
+              '₹${weekendRate.toInt()} × ${nightTypes.weekend} weekend night(s)',
+              '₹${(weekendRate * nightTypes.weekend).toInt()}',
+            ),
           const Divider(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

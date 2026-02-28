@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:homestay_booking/core/utils/date_utils.dart';
+import 'package:homestay_booking/core/utils/pricing_utils.dart';
 import 'package:homestay_booking/features/bookings/domain/booking_model.dart';
 import 'package:homestay_booking/features/rooms/domain/room_model.dart';
 import 'package:homestay_booking/shared/providers/firestore_providers.dart';
@@ -63,12 +64,9 @@ class _EditBookingScreenState extends ConsumerState<EditBookingScreen> {
 
   double _calculateTotalPrice() {
     if (_selectedRoom == null || _checkInDate == null || _checkOutDate == null) return 0;
-    final nights = AppDateUtils.calculateNights(_checkInDate!, _checkOutDate!);
-    if (nights <= 0) return 0;
-    final rate = _numberOfGuests == 1
-        ? _selectedRoom!.pricePerNightSingle
-        : _selectedRoom!.pricePerNightDouble;
-    return rate * nights;
+    return PricingUtils.calculateBookingPrice(
+      _selectedRoom!, _checkInDate!, _checkOutDate!, _numberOfGuests,
+    );
   }
 
   Future<void> _selectDate({required bool isCheckIn}) async {

@@ -10,6 +10,7 @@ import 'package:homestay_booking/features/bookings/presentation/edit_booking_scr
 import 'package:homestay_booking/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:homestay_booking/features/calendar/presentation/calendar_screen.dart';
 import 'package:homestay_booking/features/rooms/presentation/room_list_screen.dart';
+import 'package:homestay_booking/features/rooms/presentation/room_settings_screen.dart';
 import 'package:homestay_booking/shared/providers/auth_provider.dart';
 import 'package:homestay_booking/shared/widgets/app_scaffold.dart';
 
@@ -86,6 +87,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => EditBookingScreen(
           bookingId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/rooms/:id/edit',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => RoomSettingsScreen(
+          roomId: state.pathParameters['id']!,
         ),
       ),
     ],
