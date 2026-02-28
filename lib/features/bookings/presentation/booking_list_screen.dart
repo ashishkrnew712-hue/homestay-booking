@@ -66,7 +66,7 @@ class _BookingListScreenState extends ConsumerState<BookingListScreen>
           final filtered =
               _filterBookings(bookings, _tabController.index);
           if (filtered.isEmpty) {
-            return _buildEmptyState(colorScheme);
+            return _buildEmptyState(colorScheme, _tabController.index);
           }
           return ListView.builder(
             padding: const EdgeInsets.all(12),
@@ -86,7 +86,19 @@ class _BookingListScreenState extends ConsumerState<BookingListScreen>
     );
   }
 
-  Widget _buildEmptyState(ColorScheme colorScheme) {
+  Widget _buildEmptyState(ColorScheme colorScheme, int tabIndex) {
+    final title = switch (tabIndex) {
+      1 => 'No active bookings',
+      2 => 'No cancelled bookings',
+      _ => 'No bookings found',
+    };
+    
+    final subtitle = switch (tabIndex) {
+      1 => 'Active upcoming and current bookings will appear here',
+      2 => 'Bookings that have been cancelled will appear here',
+      _ => 'Tap + to create your first booking',
+    };
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -98,17 +110,18 @@ class _BookingListScreenState extends ConsumerState<BookingListScreen>
           ),
           const SizedBox(height: 16),
           Text(
-            'No bookings found',
+            title,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Tap + to create your first booking',
+            subtitle,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
