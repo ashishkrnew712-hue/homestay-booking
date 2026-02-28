@@ -21,6 +21,37 @@
 **Rationale**: Simpler scope for MVP, avoids payment gateway integration complexity
 **Alternatives**: Razorpay, Stripe integration
 
+## ADR-005: App Flow — Direct to Login
+**Date**: 2026-02-28
+**Status**: Accepted
+**Decision**: No splash screen or onboarding — app opens directly to login
+**Rationale**: Only 2 known owners use the app, no need for onboarding
+
+## ADR-006: Room Management via Firestore
+**Date**: 2026-02-28
+**Status**: Accepted
+**Decision**: Rooms stored in Firestore (not hardcoded), editable without app update
+**Rationale**: Flexibility to add/rename rooms later without redeploying
+
+## ADR-007: Flat Firestore Collections
+**Date**: 2026-02-28
+**Status**: Accepted
+**Decision**: Use flat top-level collections (`/rooms`, `/bookings`) not nested sub-collections
+**Rationale**: Easier to query all bookings across rooms for dashboard/calendar views
+
+## ADR-008: Riverpod State Management
+**Date**: 2026-02-28
+**Status**: Accepted
+**Decision**: Use Riverpod for Flutter state management
+**Rationale**: Modern, testable, excellent integration with Firebase streams
+**Alternatives**: Bloc, Provider
+
+## ADR-009: Email/Password Authentication
+**Date**: 2026-02-28
+**Status**: Accepted
+**Decision**: Email/password login, no forgot password flow (reset via Firebase Console)
+**Rationale**: Simplest auth for 2-owner MVP, phone OTP adds unnecessary complexity
+
 ## ADR-004: Single Property First
 **Date**: 2026-02-28
 **Status**: Accepted
