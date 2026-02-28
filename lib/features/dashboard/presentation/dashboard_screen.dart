@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homestay_booking/core/utils/date_utils.dart';
 import 'package:homestay_booking/core/utils/seed_data.dart';
+import 'package:homestay_booking/core/services/notification_service.dart';
 import 'package:homestay_booking/features/bookings/domain/booking_model.dart';
 import 'package:homestay_booking/features/rooms/domain/room_model.dart';
 import 'package:homestay_booking/shared/providers/auth_provider.dart';
@@ -24,6 +25,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   void initState() {
     super.initState();
     _seedIfNeeded();
+    NotificationService().initialize();
   }
 
   Future<void> _seedIfNeeded() async {
