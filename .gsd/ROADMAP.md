@@ -1,13 +1,13 @@
 # ROADMAP.md
 
-> **Current Phase**: Phase 2 — Core Booking Engine
+> **Current Phase**: Phase 4 — Pricing & Guest Details
 > **Milestone**: v1.0 — Owner Booking Management MVP
 
 ## Must-Haves (from SPEC)
 - [x] Owner authentication (2 accounts)
 - [x] Room management (5 rooms, A–E)
  - [x] Create/edit/cancel bookings with real-time sync
-- [ ] Calendar view of room availability
+- [x] Calendar view of room availability
 - [ ] Push notifications on booking changes
 - [ ] Single/double occupancy pricing
 
@@ -24,7 +24,7 @@
 **Requirements**: REQ-04, REQ-05, REQ-06, REQ-07
 
 ### Phase 3: Calendar & Room Views
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Calendar UI for room availability, room list/detail views, booking details screen
 **Requirements**: REQ-08
 
