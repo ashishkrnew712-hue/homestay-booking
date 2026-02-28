@@ -3,33 +3,26 @@
 > **Last Updated**: 2026-02-28
 
 ## Current Position
-- **Phase**: 1 (completed)
-- **Task**: All Phase 1 tasks complete
-- **Status**: Verified — `flutter analyze` passes with no issues
+- **Phase**: 2 — Core Booking Engine
+- **Task**: Planning complete
+- **Status**: Ready for execution
 
-## Last Session Summary
-Phase 1 executed successfully. 3 plans, 7 tasks completed:
-- Flutter 3.41.2 installed, project scaffolded
-- Firebase configured (Auth, Firestore, FCM)
-- Material 3 theme, GoRouter with auth redirects
-- Login screen with modern UI
-- Room & Booking models with Firestore serialization
-- Repositories with real-time streams
-- Seed data for 5 rooms (A-E)
+## Plans Created
+- Plan 2.1: Booking Creation Flow (wave 1) — 2 tasks
+- Plan 2.2: Edit Booking & Dashboard (wave 1) — 2 tasks
+- Plan 2.3: Navigation & Routing Integration (wave 2) — 2 tasks
+
+## Phase 1 Summary (Complete)
+Flutter 3.41.2, Firebase configured, auth + login, Room/Booking models, repositories, seed data.
 
 ## Key Decisions
-- Flutter + Firebase stack
-- Riverpod state management
-- Flat Firestore collections
-- Email/password auth (no forgot password)
-- Direct to login (no splash/onboarding)
-- Room data in Firestore (not hardcoded)
-- propertyId in all models for future multi-property
-- Android package: com.homestay.booking
-- minSdk: 23 (Firebase requirement)
+- All from Phase 1 apply
+- Dashboard triggers room seeding on first load
+- ShellRoute pattern for bottom navigation
+- Booking form reuse pattern for create/edit
 
 ## Next Steps
-1. `/plan 2` — Plan Phase 2: Core Booking Engine
+1. `/execute 2`
 
 ## Blockers
 - None
