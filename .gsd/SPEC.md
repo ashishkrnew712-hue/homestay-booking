@@ -3,7 +3,7 @@
 > **Status**: `FINALIZED`
 
 ## Vision
-A modern, Flutter-based mobile app for managing homestay room bookings across Android and iOS. Two co-owners manage a 5-room property and need real-time sync to avoid double bookings and miscommunication. The app replaces WhatsApp-based coordination with a dedicated booking management system powered by Firebase.
+A modern, Flutter-based mobile app for managing homestay room bookings across Android and iOS. Two co-owners manage a 6-room property and need real-time sync to avoid double bookings and miscommunication. The app replaces WhatsApp-based coordination with a dedicated booking management system powered by Firebase.
 
 ## Goals
 1. **Real-time booking sync** — Both owners see the same booking state instantly, eliminating double bookings
@@ -23,7 +23,7 @@ A modern, Flutter-based mobile app for managing homestay room bookings across An
 - **Owner A & Owner B** — Equal access, full control over all bookings and room management. Both authenticate separately and receive push notifications for all booking changes.
 
 ## Rooms
-- **5 rooms**: A, B, C, D, E (placeholder names, configurable later)
+- **6 rooms**: 101, 102, 103, 201, 202, 203
 - **All double occupancy** — can accommodate 1 or 2 guests
 - **Per-room pricing** — each room can have different base rates
 - **Occupancy-based pricing** — single occupancy should have a different (likely lower) rate than double
@@ -50,12 +50,12 @@ A modern, Flutter-based mobile app for managing homestay room bookings across An
 ## Constraints
 - **Timeline**: MVP by end of weekend (Feb 28 – Mar 2, 2026)
 - **Team**: Solo developer with AI assistance
-- **Scale**: Single property, 5 rooms, 2 owners
+- **Scale**: Single property, 6 rooms, 2 owners
 - **Offline payments**: No payment gateway integration needed
 
 ## Success Criteria
 - [ ] Both owners can log in with separate accounts
-- [ ] All 5 rooms visible with availability status
+- [ ] All 6 rooms visible with availability status
 - [ ] Bookings can be created, viewed, edited, and cancelled
 - [ ] Real-time sync — changes appear on both devices instantly
 - [ ] Push notifications fire when bookings change

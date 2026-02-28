@@ -5,7 +5,7 @@
 
 ## Must-Haves (from SPEC)
 - [x] Owner authentication (2 accounts)
-- [x] Room management (5 rooms, A–E)
+- [x] Room management (6 rooms, 101-103, 201-203)
  - [x] Create/edit/cancel bookings with real-time sync
 - [x] Calendar view of room availability
 - [x] Push notifications on booking changes
