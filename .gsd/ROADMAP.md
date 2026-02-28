@@ -1,11 +1,11 @@
 # ROADMAP.md
 
-> **Current Phase**: Not started
+> **Current Phase**: Phase 2 — Core Booking Engine
 > **Milestone**: v1.0 — Owner Booking Management MVP
 
 ## Must-Haves (from SPEC)
-- [ ] Owner authentication (2 accounts)
-- [ ] Room management (5 rooms, A–E)
+- [x] Owner authentication (2 accounts)
+- [x] Room management (5 rooms, A–E)
 - [ ] Create/edit/cancel bookings with real-time sync
 - [ ] Calendar view of room availability
 - [ ] Push notifications on booking changes
@@ -14,7 +14,7 @@
 ## Phases
 
 ### Phase 1: Project Setup & Firebase Foundation
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Flutter project scaffolding, Firebase integration, authentication, and Firestore data models
 **Requirements**: REQ-01, REQ-02, REQ-03
 
