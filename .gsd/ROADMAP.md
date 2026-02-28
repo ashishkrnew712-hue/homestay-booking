@@ -6,7 +6,7 @@
 ## Must-Haves (from SPEC)
 - [x] Owner authentication (2 accounts)
 - [x] Room management (5 rooms, A–E)
-- [ ] Create/edit/cancel bookings with real-time sync
+ - [x] Create/edit/cancel bookings with real-time sync
 - [ ] Calendar view of room availability
 - [ ] Push notifications on booking changes
 - [ ] Single/double occupancy pricing
@@ -19,7 +19,7 @@
 **Requirements**: REQ-01, REQ-02, REQ-03
 
 ### Phase 2: Core Booking Engine
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Booking CRUD operations, real-time sync, availability validation, and conflict prevention
 **Requirements**: REQ-04, REQ-05, REQ-06, REQ-07
 
