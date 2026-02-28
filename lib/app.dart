@@ -8,6 +8,7 @@ import 'package:homestay_booking/features/bookings/presentation/booking_list_scr
 import 'package:homestay_booking/features/bookings/presentation/create_booking_screen.dart';
 import 'package:homestay_booking/features/bookings/presentation/edit_booking_screen.dart';
 import 'package:homestay_booking/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:homestay_booking/features/calendar/presentation/calendar_screen.dart';
 import 'package:homestay_booking/features/rooms/presentation/room_list_screen.dart';
 import 'package:homestay_booking/shared/providers/auth_provider.dart';
 import 'package:homestay_booking/shared/widgets/app_scaffold.dart';
@@ -51,6 +52,12 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: '/bookings',
             pageBuilder: (context, state) => const NoTransitionPage(
               child: BookingListScreen(),
+            ),
+          ),
+          GoRoute(
+            path: '/calendar',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: CalendarScreen(),
             ),
           ),
           GoRoute(

@@ -9,8 +9,9 @@ class AppScaffold extends StatelessWidget {
 
   int _calculateSelectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).matchedLocation;
-    if (location.startsWith('/bookings')) return 1;
-    if (location.startsWith('/rooms')) return 2;
+    if (location.startsWith('/calendar')) return 1;
+    if (location.startsWith('/bookings')) return 2;
+    if (location.startsWith('/rooms')) return 3;
     return 0;
   }
 
@@ -20,9 +21,12 @@ class AppScaffold extends StatelessWidget {
         context.go('/');
         break;
       case 1:
-        context.go('/bookings');
+        context.go('/calendar');
         break;
       case 2:
+        context.go('/bookings');
+        break;
+      case 3:
         context.go('/rooms');
         break;
     }
@@ -49,6 +53,11 @@ class AppScaffold extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.calendar_month_outlined),
             selectedIcon: Icon(Icons.calendar_month),
+            label: 'Calendar',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.book_outlined),
+            selectedIcon: Icon(Icons.book),
             label: 'Bookings',
           ),
           NavigationDestination(
