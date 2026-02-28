@@ -22,7 +22,7 @@ jobs:
           channel: 'stable'
 
       - name: Install dependencies
-        run: flutter create . --platforms ios && flutter pub get
+        run: flutter pub get
 
       - name: Install CocoaPods
         run: |
