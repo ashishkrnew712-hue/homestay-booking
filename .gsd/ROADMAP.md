@@ -1,6 +1,6 @@
 # ROADMAP.md
 
-> **Current Phase**: Phase 4 — Pricing & Guest Details
+> **Current Phase**: Phase 5 — Notifications & Polish
 > **Milestone**: v1.0 — Owner Booking Management MVP
 
 ## Must-Haves (from SPEC)
@@ -9,7 +9,7 @@
  - [x] Create/edit/cancel bookings with real-time sync
 - [x] Calendar view of room availability
 - [ ] Push notifications on booking changes
-- [ ] Single/double occupancy pricing
+- [x] Single/double occupancy pricing
 
 ## Phases
 
@@ -29,7 +29,7 @@
 **Requirements**: REQ-08
 
 ### Phase 4: Pricing & Guest Details
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Occupancy-based pricing, seasonal/weekend rates, optional guest fields (ID proof, requests, add-ons)
 **Requirements**: REQ-09, REQ-10, REQ-12
 
